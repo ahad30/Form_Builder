@@ -102,7 +102,7 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {field.label && <label className="block mb-1">{field.label} {field.required ? '*' : ''}</label>}
+      {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
       {renderField()}
       {isHovering && (
         <HoverActions

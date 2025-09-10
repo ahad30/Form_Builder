@@ -9,7 +9,6 @@ interface SettingsSidebarProps {
 }
 
 const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onClose }) => {
-  console.log(field)
   if (!field) return null;
 
   const [localField, setLocalField] = useState(field);
@@ -28,9 +27,11 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onCl
   };
 
   const isOptionField = ['select', 'checkbox', 'radio'].includes(field.type);
+   const typeField = ['file', 'upload', 'time' , 'date'].includes(field.type);
+  const isAcceptanceField = field.type === 'acceptance';
 
   return (
-    <div className="w-64 p-4 bg-gray-100 border-l fixed right-0 top-0 bottom-0">
+    <div className="w-[500px] p-4 bg-gray-100 border-l fixed right-0 top-0 bottom-0">
       <h2 className="text-lg mb-2 font-bold">{field.label} Field Settings</h2>
       <button onClick={onClose} className="absolute top-2 right-2">X</button>
       <label className="block mb-2">
@@ -51,7 +52,8 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onCl
           className="border p-1 w-full"
         />
       </label>
-      <label className="block mb-2">
+      { !isOptionField && !isAcceptanceField && !typeField &&
+          <label className="block mb-2">
         Placeholder:
         <input
           type="text"
@@ -60,7 +62,8 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onCl
           className="border p-1 w-full"
         />
       </label>
-      <label className="block mb-2">
+      }
+      <label className="flex items-center gap-2 mb-2">
         Required:
         <input
           type="checkbox"
@@ -78,6 +81,19 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onCl
           />
         </label>
       )}
+    {isAcceptanceField && (
+  <label htmlFor="acceptance" className="block mb-2">
+    Acceptance Content:
+    <input
+      type="text"
+      id="acceptance"
+      value={localField.content ? localField.content.replace(/<[^>]+>/g, '') : ''}
+      onChange={(e) => handleChange('content', e.target.value)}
+      className="border p-1 w-full mb-2"
+    />
+  </label>
+)}
+
       <button onClick={save} className="bg-blue-500 text-white p-2">Save</button>
     </div>
   );

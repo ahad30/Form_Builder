@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { FormData, FormField } from '@/lib/types';
 import FormFieldComponent from './FormField';
@@ -15,6 +15,7 @@ const EXISTING_FIELD_TYPE = 'existing-field';
 const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
   const [fields, setFields] = useState<FormField[]>(formData.fields);
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
+  const dropRef = useRef<HTMLDivElement>(null);
 
   const selectedField = fields.find(f => f.id === selectedFieldId) || null;
 
@@ -54,6 +55,8 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
     },
   });
 
+  drop(dropRef)
+
   const handleDelete = (id: string) => {
     const newFields = fields.filter(f => f.id !== id);
     setFields(newFields);
@@ -84,7 +87,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
   };
 
   return (
-    <div ref={drop} className="flex-1 p-4 bg-white">
+    <div ref={dropRef} className="flex-1 p-4 bg-white">
       <div className={`grid grid-cols-1 lg:grid-cols-3 p-4 bg-white transition-all duration-300 ${selectedFieldId ? 'blur-sm' : ''}`}>
         {fields.map((field, index) => (
           <FormFieldComponent

@@ -28,14 +28,16 @@ export default function Home() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="flex h-screen">
-        {!isPreview && <FieldPalette />}
+        {isPreview && <FieldPalette />}
         <div className="flex-1 flex flex-col">
           <nav className="p-4 bg-gray-200">
-            <button onClick={() => setIsPreview(!isPreview)} className="bg-blue-500 text-white p-2">
-              {isPreview ? 'Back to Edit' : 'Preview'}
+            <div className='flex justify-end'>
+              <button onClick={() => setIsPreview(!isPreview)} className="bg-blue-500 text-white p-2">
+              {!isPreview ? 'Edit' : 'Preview'}
             </button>
+            </div>
           </nav>
-          {isPreview ? (
+          {!isPreview ? (
             <PreviewForm formData={formData} />
           ) : (
             <FormBuilder formData={formData} onUpdate={setFormData} />

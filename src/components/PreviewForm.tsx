@@ -34,7 +34,7 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
         }
       }
     });
-
+    console.log(data)
     setSubmittedData(data);
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
@@ -111,10 +111,10 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
     <div className="p-4 w-[90%] mx-auto">
       <h1 className="text-2xl mb-4">{formData.name}</h1>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {formData.fields.map((field) => (
             <div key={field.id} className={`p-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'}`}>
-              {field.label && <label className="block mb-1">{field.label} {field.required ? '*' : ''}</label>}
+              {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
               {renderField(field)}
             </div>
           ))}
