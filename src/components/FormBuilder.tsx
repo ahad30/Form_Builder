@@ -1,4 +1,3 @@
-// File: components/FormBuilder.tsx
 import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { FormData, FormField } from '@/lib/types';
@@ -86,7 +85,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
 
   return (
     <div ref={drop} className="flex-1 p-4 bg-white">
-      <div className={`grid grid-cols-3 p-4 bg-white transition-all duration-300 ${selectedFieldId ? 'blur-sm' : ''}`}>
+      <div className={`grid grid-cols-1 lg:grid-cols-3 p-4 bg-white transition-all duration-300 ${selectedFieldId ? 'blur-sm' : ''}`}>
         {fields.map((field, index) => (
           <FormFieldComponent
             key={field.id}

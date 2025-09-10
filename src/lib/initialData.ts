@@ -87,11 +87,13 @@ export const initialFormData: FormData = {
       "columnWidth": "66%"
     },
     {
-      "id": "b5dbentx",
-      "type": "acceptance",
-      "content": "<p><strong>I agree with all terms and conditions.</strong></p>\n",
-      "required": true,
-      "columnWidth": "100%"
-    }
+            "id": "b5dbentx",
+            "type": "acceptance",
+            "label": "Terms and Conditions",
+            "name": "terms_and_conditions",
+            "content": "<p><strong>I agree with all terms and conditions.</strong></p>\n",
+            "required": true,
+            "columnWidth": "100%"
+        }
   ]
 };

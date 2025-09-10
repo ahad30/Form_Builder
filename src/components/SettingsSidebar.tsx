@@ -9,6 +9,7 @@ interface SettingsSidebarProps {
 }
 
 const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onClose }) => {
+  console.log(field)
   if (!field) return null;
 
   const [localField, setLocalField] = useState(field);
