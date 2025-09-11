@@ -1,4 +1,3 @@
-// File: components/HoverActions.tsx
 import React from 'react';
 
 interface HoverActionsProps {

@@ -1,13 +1,10 @@
 "use client";
 import LoadingPage from "@/components/LoadingPage";
 import "./globals.css";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
 import { useEffect, useState } from "react";
 
-const queryClient = new QueryClient();
+
+
 
 export default function RootLayout({
   children,
@@ -30,18 +27,21 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+      <body suppressHydrationWarning={true} className="bg-white  text-black">
         {
                   isLoading ? ( 
                         <div>
                           <LoadingPage/>
                         </div>
                   ): (
-        <QueryClientProvider client={queryClient}>
+
+          <div>
+
+            {children}
+          </div>
 
 
-          {children}
-        </QueryClientProvider>
+
                   )}
       </body>
     </html>

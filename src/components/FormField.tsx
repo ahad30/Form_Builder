@@ -1,4 +1,3 @@
-// File: components/FormField.tsx
 import React, { useState } from 'react';
 import { FormField as FieldType } from '@/lib/types';
 import HoverActions from './HoverActions';
@@ -101,7 +100,7 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
       className={`relative  p-4 border mb-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'} ${isDragging ? 'opacity-50' : ''}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-    >
+    > 
       {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
       {renderField()}
       {isHovering && !isDragging && (
