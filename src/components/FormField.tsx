@@ -16,8 +16,8 @@ interface FormFieldProps {
 const ITEM_TYPE = 'existing-field';
 
 const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplicate, onSettings, moveField }) => {
-  const [isHovering, setIsHovering] = useState(false);
 
+  const [isHovering, setIsHovering] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [, drop] = useDrop({
@@ -98,7 +98,7 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
   return (
     <div
       ref={ref}
-      className={`relative p-4 border mb-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'} ${isDragging ? 'opacity-50' : ''}`}
+      className={`relative  p-4 border mb-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'} ${isDragging ? 'opacity-50 bg-red-500' : ''}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >

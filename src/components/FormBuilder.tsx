@@ -48,7 +48,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
 
   const [, drop] = useDrop({
     accept: [NEW_FIELD_TYPE, EXISTING_FIELD_TYPE],
-    drop: (item: any, monitor) => {
+    drop: (item: any) => {
       if (item.fieldType) { 
         addNewField(item.fieldType, fields.length); 
       }

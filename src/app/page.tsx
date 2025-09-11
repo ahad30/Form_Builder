@@ -20,7 +20,7 @@ export default function Home() {
   });
   const [isPreview, setIsPreview] = useState(false);
 
-  // Save form data to localStorage whenever it changes
+
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
   }, [formData]);
