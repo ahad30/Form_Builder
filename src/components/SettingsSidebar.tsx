@@ -1,4 +1,3 @@
-// File: components/SettingsSidebar.tsx
 import React, { useState } from 'react';
 import { FormField } from '@/lib/types';
 
@@ -9,9 +8,8 @@ interface SettingsSidebarProps {
 }
 
 const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onClose }) => {
-  if (!field) return null;
-
-  const [localField, setLocalField] = useState(field);
+  const [localField, setLocalField] = useState<FormField | null>(field);
+  if (!field || !localField) return null;
 
   const handleChange = (key: keyof FormField, value: any) => {
     setLocalField({ ...localField, [key]: value });
