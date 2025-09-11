@@ -14,7 +14,7 @@
   border-width: 2px 2px 50px 2px;
   border-radius: 100%;
   position: relative;
-  animation: 3s yinYang linear infinite;
+  animation: 3s Rotate linear infinite;
 }
 .loader:before {
   content: "";
@@ -40,6 +40,8 @@
   height: 12px;
   box-sizing: content-box;
 }
-@keyframes yinYang {
+@keyframes Rotate {
   100%{transform: rotate(360deg)}
 }
+
+

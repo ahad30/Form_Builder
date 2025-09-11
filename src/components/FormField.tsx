@@ -52,15 +52,15 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
           <input
             type={field.type}
             placeholder={field.placeholder}
-            className="border p-2 w-full"
+            className="border p-2 w-full cursor-grab"
             disabled
           />
         );
       case 'file':
-        return <input type="file" className="border p-2 w-full" disabled />;
+        return <input type="file" className="border p-2 w-full cursor-grab" disabled />;
       case 'select':
         return (
-          <select className="border p-2 w-full" disabled>
+          <select className="border p-2 w-full cursor-grab" disabled>
             <option>{field.placeholder}</option>
             {field.options?.map((opt, i) => {
               const [label, value] = opt.split('=');
@@ -71,12 +71,12 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
       case 'checkbox':
       case 'radio':
         return (
-          <div className={field.inlineStyle === 'inline' ? 'flex space-x-2' : 'space-y-2'}>
+          <div className={`${field.inlineStyle === 'inline' ? 'flex space-x-2' : 'space-y-2'}`}>
             {field.options?.map((opt, i) => {
               const [label, value] = opt.split('=');
               return (
-                <label key={i} className="flex items-center">
-                  <input type={field.type} name={field.name} value={value} disabled className='me-2'/>
+                <label key={i} className="flex items-center cursor-grab">
+                  <input type={field.type} name={field.name} value={value} disabled className='me-2 '/>
                   {label}
                 </label>
               );
@@ -85,8 +85,8 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
         );
       case 'acceptance':
         return (
-          <label className="flex items-center">
-            <input type="checkbox" disabled  className='me-2'/>
+          <label className="flex items-center cursor-grab">
+            <input type="checkbox" disabled  className='me-2 '/>
             <span dangerouslySetInnerHTML={{ __html: field.content || '' }} />
           </label>
         );
@@ -98,13 +98,13 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
   return (
     <div
       ref={ref}
-      className={`relative  p-4 border mb-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'} ${isDragging ? 'opacity-50 bg-red-500' : ''}`}
+      className={`relative  p-4 border mb-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'} ${isDragging ? 'opacity-50' : ''}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
       {renderField()}
-      {isHovering && (
+      {isHovering && !isDragging && (
         <HoverActions
           onSettings={() => onSettings(field.id)}
           onDelete={() => onDelete(field.id)}
