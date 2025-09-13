@@ -88,6 +88,7 @@ form-builder/
 ├── app/
 │   ├── page.tsx            # Main page with FormBuilder and PreviewForm
 │   ├── globals.css         # Global styles (Tailwind CSS)
+    ├── layout.tsx            # Main Layout
 ├── components/
 │   ├── FormBuilder.tsx      # Drag-and-drop form builder component
 │   ├── FormField.tsx        # Individual field renderer
