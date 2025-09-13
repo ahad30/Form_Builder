@@ -29,9 +29,9 @@ const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ field, onUpdate, onCl
   const isAcceptanceField = field.type === 'acceptance';
 
   return (
-    <div className="w-[500px] p-4 bg-gray-100 border-l fixed right-0 top-0 bottom-0">
+    <div className="">
       <h2 className="text-lg mb-2 font-bold">{field.label} Field Settings</h2>
-      <button onClick={onClose} className="absolute top-2 right-2">X</button>
+      {/* <button onClick={onClose} className="absolute top-2 right-2">X</button> */}
       <label className="block mb-2">
         Label:
         <input

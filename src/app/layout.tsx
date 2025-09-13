@@ -2,6 +2,7 @@
 import LoadingPage from "@/components/LoadingPage";
 import "./globals.css";
 import { useEffect, useState } from "react";
+import "primereact/resources/primereact.min.css";
 
 
 

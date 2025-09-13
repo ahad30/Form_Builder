@@ -3,6 +3,8 @@ import { useDrop } from 'react-dnd';
 import { FormData, FormField } from '@/lib/types';
 import FormFieldComponent from './FormField';
 import SettingsSidebar from './SettingsSidebar';
+import { Sidebar } from 'primereact/sidebar';
+
 
 interface FormBuilderProps {
   formData: FormData;
@@ -13,6 +15,7 @@ const NEW_FIELD_TYPE = 'new-field';
 const EXISTING_FIELD_TYPE = 'existing-field';
 
 const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
+   const [visibleRight, setVisibleRight] = useState(false);
   const [fields, setFields] = useState<FormField[]>(formData.fields);
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
   const dropRef = useRef<HTMLDivElement>(null);
@@ -32,9 +35,9 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
     const newField: FormField = {
       id: Date.now().toString(),
       type: fieldType,
-      label: `${fieldType.charAt(0).toUpperCase() + fieldType.slice(1)}`,
-      name: fieldType,
-      placeholder: `Enter ${fieldType}`,
+      label: `${fieldType === 'text' ? 'Name' :fieldType.charAt(0).toUpperCase() + fieldType.slice(1)}`,
+      name: `${fieldType === 'text' ? 'name' : fieldType}`,
+      placeholder: `Enter your ${fieldType === 'text' ? 'Name' : fieldType}`,
       required: false,
       columnWidth: '100%',
       options: fieldType === 'select' || fieldType === 'checkbox' || fieldType === 'radio' ? ['Option 1=option1'] : undefined,
@@ -78,7 +81,15 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
 
   const handleSettings = (id: string) => {
     setSelectedFieldId(id);
+    setVisibleRight(true)
   };
+
+  const handleClose =() => {
+     setSelectedFieldId(null)
+    setVisibleRight(false)
+
+
+  }
 
   const handleUpdateField = (updated: FormField) => {
     const newFields = fields.map(f => f.id === updated.id ? updated : f);
@@ -88,7 +99,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
 
   return (
 <>
-    <div ref={dropRef} className={`flex-1 p-4 bg-white ${selectedFieldId ? 'blur-md' : ''}`}>
+    <div ref={dropRef} className={`flex-1 p-4 bg-white`}>
     
       <h1 className='text-center font-bold text-xl mt-5 mb-5'> (Change  the order of existing form fields by dragging and dropping)</h1>
       <div className={`grid grid-cols-1 lg:grid-cols-3 p-4 bg-white transition-all duration-300  }`}>
@@ -107,11 +118,13 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
      
     </div>
      {selectedField && (
+     <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)} className='w-[500px] p-5 bg-gray-100'>
         <SettingsSidebar
           field={selectedField}
           onUpdate={handleUpdateField}
-          onClose={() => setSelectedFieldId(null)}
+          onClose={handleClose}
         />
+      </Sidebar>
       )}
 </>
   );

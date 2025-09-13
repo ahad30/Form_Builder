@@ -9,6 +9,11 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
   const [submittedData, setSubmittedData] = useState<Record<string, any> | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // Get current date and time for defaults
+  const today = new Date();
+  const defaultDate = today.toISOString().split('T')[0];
+  const defaultTime = today.toTimeString().split(' ')[0].slice(0, 5);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -16,13 +21,11 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
     const data: Record<string, any> = {};
 
     formDataObj.forEach((value, key) => {
-      
       if (value instanceof File) {
         if (value.name) {
           data[key] = value.name; 
         }
       } else {
-   
         if (data[key]) {
           if (Array.isArray(data[key])) {
             data[key].push(value);
@@ -34,7 +37,6 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
         }
       }
     });
-    console.log(data)
     setSubmittedData(data);
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
@@ -44,8 +46,6 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
     switch (field.type) {
       case 'text':
       case 'email':
-      case 'date':
-      case 'time':
         return (
           <input
             type={field.type}
@@ -55,12 +55,34 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
             className="border p-2 w-full"
           />
         );
+      case 'date':
+        return (
+          <input
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            defaultValue={field.placeholder ? undefined : defaultDate}
+            className="border p-2 w-full"
+          />
+        );
+      case 'time':
+        return (
+          <input
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            defaultValue={field.placeholder ? undefined : defaultTime}
+            className="border p-2 w-full"
+          />
+        );
       case 'file':
         return <input type="file" name={field.name} className="border p-2 w-full" required={field.required} />;
       case 'select':
         return (
           <select name={field.name} className="border p-2 w-full" required={field.required}>
-            <option value="">{field.placeholder}</option>
+            <option value="N/A">{field.placeholder}</option>
             {field.options?.map((opt, i) => {
               const [label, value] = opt.split('=');
               return <option key={i} value={value}>{label}</option>;
@@ -114,7 +136,7 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {formData.fields.map((field) => (
             <div key={field.id} className={`p-2 ${field.columnWidth ? `w-[${field.columnWidth}]` : 'w-full'}`}>
-              {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
+              {field.label && <label className={`block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span></label>}
               {renderField(field)}
             </div>
           ))}
