@@ -1,94 +1,116 @@
-Form Builder
-A dynamic, drag-and-drop form builder application built with Next.js, React, TypeScript, and react-dnd. Create and customize forms with various field types, preview submissions, and persist form data using local storage.
-Features
 
-Drag-and-Drop Interface: Add and reorder form fields using an intuitive drag-and-drop system powered by react-dnd.
-Field Types: Supports multiple field types including text, email, date, time, file, select, checkbox, radio, and acceptance.
-Settings Sidebar: Edit field properties (label, name, placeholder, required, options, content) with a settings panel that appears on field selection.
-Preview Mode: Preview the form with real-time input validation and submit data to view in a table format.
-Local Storage: Persists form structure across page refreshes using browser local storage.
-Visual Feedback: Blurs the main content and disables hover actions when the settings sidebar is open for a focused editing experience.
-File Upload Handling: Displays file names in the submitted data table instead of raw file objects.
-Plain Text for Acceptance Fields: Allows editing acceptance field content as plain text, stripping HTML tags for simplicity.
+# 📝 Form Builder
 
-Prerequisites
+A dynamic, drag-and-drop form builder built with Next.js, React, TypeScript, and react-dnd.  
+Create and customize forms with various field types, preview submissions, and persist form data using local storage.
 
-Node.js (v18 or higher)
-npm or Yarn
-A modern web browser (Chrome, Firefox, Edge, etc.)
+---
 
-Installation
+## ✨ Features
 
-Clone the Repository:
+- Drag-and-Drop Interface – Add and reorder form fields intuitively with `react-dnd`.
+- Multiple Field Types – Text, email, date, time, file, select, checkbox, radio, and acceptance fields.
+- Settings Sidebar – Edit field properties (label, name, placeholder, required, options, content) in real time.
+- Preview Mode – Preview and test the form with live validation before saving.
+- Persistent Data – Form structure is saved in `localStorage` and restored on reload.
+- Visual Feedback – Automatically blurs main content when the settings panel is open for a focused editing experience.
+- File Upload Handling – Display uploaded file names in the submitted data table instead of raw file objects.
+- Plain Text Acceptance Fields – Automatically strip HTML tags for simplified acceptance field content.
+
+---
+
+## 🛠 Prerequisites
+
+- Node.js `v18+`
+- npm or Yarn
+- A modern browser (Chrome, Firefox, Edge, etc.)
+
+---
+
+## 🚀 Installation
+
+Clone the repository and install dependencies:
+
+```bash
 git clone https://github.com/your-username/form-builder.git
 cd form-builder
 
-
-Install Dependencies:
+# Install dependencies
 npm install
-
-or
+# or
 yarn install
+````
 
+Run the development server:
 
-Run the Development Server:
+```bash
 npm run dev
-
-or
+# or
 yarn dev
+```
 
+Open your browser and navigate to:
+[http://localhost:3000](http://localhost:3000)
 
-Open your browser and navigate to http://localhost:3000 to view the application.
+---
 
+## 📖 Usage
 
-Usage
+### Form Builder Mode
 
-Form Builder Mode:
+1. Drag field types (e.g., Text, Email, Acceptance) from the left panel to the form canvas.
+2. Reorder fields by dragging them within the canvas.
+3. Click Settings on a field to edit properties (label, name, required, etc.).
+4. Use Delete to remove a field or Duplicate to copy it.
 
-Drag field types (e.g., Text, Email, Acceptance) from the left palette to the form canvas.
-Reorder fields by dragging them within the canvas.
-Click the "Settings" button on a field to edit its properties (label, name, required, etc.) in the sidebar.
-Use "Delete" to remove a field or "Duplicate" to copy it.
+### Preview Mode
 
+1. Click the Preview button in the top navigation.
+2. Fill out the form and submit it.
+3. View submitted data in a table below the form.
+4. A brief success message will appear after submission.
 
-Preview Mode:
+### Persistence
 
-Click the "Preview" button in the top navigation to switch to Preview Mode.
-Fill out the form and submit it to view submitted data in a table below the form.
-A success message appears briefly after submission, as defined in the form schema.
+* Changes are automatically saved to `localStorage`.
+* To reset the form, run this in the browser console:
 
+```javascript
+localStorage.removeItem('formData');
+```
 
-Persistence:
+---
 
-Form changes are automatically saved to localStorage and persist across page refreshes.
-To reset the form, clear localStorage using the browser console:localStorage.removeItem('formData');
+## 📂 Project Structure
 
-
-
-
-Project Structure
+```
 form-builder/
 ├── app/
-│   ├── page.tsx          # Main page with FormBuilder and PreviewForm
-│   ├── globals.css       # Global styles (Tailwind CSS)
+│   ├── page.tsx            # Main page with FormBuilder and PreviewForm
+│   ├── globals.css         # Global styles (Tailwind CSS)
 ├── components/
-│   ├── FormBuilder.tsx   # Main form builder component with drag-and-drop
-│   ├── FormField.tsx     # Renders individual form fields
-│   ├── FieldPalette.tsx  # Palette for dragging new fields
-│   ├── HoverActions.tsx  # Settings, Delete, Duplicate buttons for fields
-│   ├── PreviewForm.tsx   # Form preview and submission handling
-│   ├── SettingsSidebar.tsx # Sidebar for editing field properties
+│   ├── FormBuilder.tsx      # Drag-and-drop form builder component
+│   ├── FormField.tsx        # Individual field renderer
+│   ├── FieldPalette.tsx     # Sidebar with available field types
+│   ├── HoverActions.tsx     # Edit/Delete/Duplicate field actions
+│   ├── PreviewForm.tsx      # Preview and submission handling
+│   ├── SettingsSidebar.tsx  # Field settings panel
 ├── lib/
-│   ├── initialData.ts    # Initial form schema
-│   ├── types.ts          # TypeScript interfaces for form data
-├── public/               # Static assets
-├── package.json          # Project dependencies and scripts
-└── README.md             # This file
+│   ├── initialData.ts       # Initial form schema
+│   ├── types.ts             # TypeScript types and interfaces
+├── public/                   # Static assets
+├── package.json              # Dependencies and scripts
+└── README.md                 # Project documentation
+```
 
-Dependencies
+---
 
-Next.js: Framework for server-side rendering and static site generation.
-React: Frontend library for building UI components.
-TypeScript: Static typing for better code reliability.
-react-dnd: Drag-and-drop functionality for fields.
-Tailwind CSS: Utility-first CSS framework for styling.
+## 📦 Dependencies
+
+* [Next.js](https://nextjs.org/) – React framework with SSR and SSG support
+* [React](https://react.dev/) – Core UI library
+* [TypeScript](https://www.typescriptlang.org/) – Static type checking
+* [react-dnd](https://react-dnd.github.io/react-dnd/about) – Drag-and-drop functionality
+* [Tailwind CSS](https://tailwindcss.com/) – Utility-first styling framework
+
+
