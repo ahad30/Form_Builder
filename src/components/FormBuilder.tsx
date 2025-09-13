@@ -99,7 +99,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ formData, onUpdate }) => {
 
   return (
 <>
-    <div ref={dropRef} className={`flex-1 p-4 bg-white`}>
+    <div ref={dropRef} className={`flex-1 p-4 bg-white ${visibleRight ? 'blur-sm pointer-events-none' : ''} transition-all duration-300`}>
     
       <h1 className='text-center font-bold text-xl mt-5 mb-5'> (Change  the order of existing form fields by dragging and dropping)</h1>
       <div className={`grid grid-cols-1 lg:grid-cols-3 p-4 bg-white transition-all duration-300  }`}>
