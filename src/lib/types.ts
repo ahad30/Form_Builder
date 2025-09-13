@@ -1,4 +1,3 @@
-// File: lib/types.ts
 export interface FormField {
   id: string;
   type: 'text' | 'email' | 'date' | 'time' | 'file' | 'select' | 'checkbox' | 'radio' | 'acceptance';

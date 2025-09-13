@@ -5,7 +5,7 @@ const fieldTypes = ['text', 'email', 'date', 'time', 'file', 'select', 'checkbox
 
 const NEW_FIELD_TYPE = 'new-field';
 
-// Separate component for each draggable field
+
 const DraggableField: React.FC<{ type: string }> = ({ type }) => {
   const dragRef = React.useRef<HTMLDivElement>(null);
 

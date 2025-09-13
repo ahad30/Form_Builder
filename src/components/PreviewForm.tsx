@@ -99,7 +99,7 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
         return (
           <label className="flex items-center">
             <input type="checkbox" name={field.name} required={field.required} className='me-2'/>
-            <span className='text-blue-500 font-normal' dangerouslySetInnerHTML={{ __html: field.content || '' }} />
+            <span className='text-blue-500' dangerouslySetInnerHTML={{ __html: field.content || '' }} />
           </label>
         );
       default:
@@ -120,7 +120,7 @@ const PreviewForm: React.FC<PreviewFormProps> = ({ formData }) => {
           ))}
         </div>
         <div className='flex justify-end'>
-          <button type="submit" className="bg-blue-500 text-white p-2 mt-4">Submit</button>
+          <button type="submit" className="bg-green-500 text-white p-2 mt-4 rounded-md">Submit</button>
         </div>
       </form>
       {showSuccess && (

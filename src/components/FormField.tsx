@@ -15,9 +15,8 @@ interface FormFieldProps {
 const ITEM_TYPE = 'existing-field';
 
 const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplicate, onSettings, moveField }) => {
-
-  const [isHovering, setIsHovering] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   const [, drop] = useDrop({
     accept: ITEM_TYPE,
@@ -86,7 +85,7 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
         return (
           <label className="flex items-center cursor-grab">
             <input type="checkbox" disabled  className='me-2 '/>
-            <span dangerouslySetInnerHTML={{ __html: field.content || '' }} />
+            <span className='' dangerouslySetInnerHTML={{ __html: field.content || '' }} />
           </label>
         );
       default:
@@ -101,7 +100,7 @@ const FormField: React.FC<FormFieldProps> = ({ field, index, onDelete, onDuplica
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     > 
-      {field.label && <label className={` block mb-1`}>{field.label} <span className={`${field.required? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
+      {field.label && <label className={`block mb-1`}>{field.label} <span className={`${field.required ? "text-red-500" : ""}`}>{field.required ? '*' : ''}</span>  </label>}
       {renderField()}
       {isHovering && !isDragging && (
         <HoverActions
